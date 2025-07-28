@@ -1,0 +1,8 @@
+<Box component="img" 
+  src="roomtopia_logo.png" 
+  alt="Roomtopia Logo"
+  sx={{ 
+    height: '40px',
+    mr: 2
+  }}
+/>
