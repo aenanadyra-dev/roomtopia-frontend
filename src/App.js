@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'r
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { CssBaseline, Box } from '@mui/material';
 import { styled, keyframes } from '@mui/material/styles';
+import API_BASE_URL from './api';
 
 // Import your pages
 import AdminDashboard from './pages/AdminDashboard';
@@ -234,7 +235,7 @@ function AppWrapper() {
       if (token && email) {
         try {
           // ✅ Try to verify token with backend
-          const response = await fetch('http://localhost:3001/api/auth/profile', {
+          const response = await fetch(`${API_BASE_URL}/api/auth/profile`, {
             headers: {
               'Authorization': `Bearer ${token}`,
               'Content-Type': 'application/json'
@@ -301,7 +302,7 @@ function AppWrapper() {
       // Try to fetch complete profile
       let profileData = userData;
       try {
-        const profileResponse = await fetch('http://localhost:3001/api/auth/profile', {
+const profileResponse = await fetch(`${API_BASE_URL}/api/auth/profile`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json'
