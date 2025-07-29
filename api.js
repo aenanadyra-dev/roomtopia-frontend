@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = 'http://localhost:3000/api'; // replace with your backend URL
+const apiUrl = 'https://roomtopia-backend-vnj1.onrender.com'; // replace with your backend URL
 
 export const getListings = async () => {
   try {
