@@ -85,7 +85,7 @@ const CollapsibleSectionHeader = styled(Box)(({ theme, isExpanded }) => ({
 // ✅ TRACKING FUNCTIONS
 const trackRoommateSearch = async (searchData) => {
   try {
-    await fetch(`${API_BASE_URL}/api/analytics/track', {
+    await fetch('http://localhost:3001/api/analytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -101,10 +101,10 @@ const trackRoommateSearch = async (searchData) => {
           socialLevel: searchData.socialLevel || 'Any',
           smokingPreference: searchData.smokingPreference || 'Any',
           searchType: searchData.searchName ? 'name_search' : 'filter_search',
-          hasAICriteria: !!(searchData.gender || searchData.religion || searchData.studyHabits || 
-                          searchData.cleanliness || searchData.socialLevel || searchData.smokingPreference),
-          filtersUsed: Object.values(searchData).filter(value => 
-            value !== '' && value !== null && value !== 18 && value !== 30
+          hasAICriteria: !!(searchData.gender || searchData.religion || searchData.studyHabits ||
+                            searchData.cleanliness || searchData.socialLevel || searchData.smokingPreference),
+          filtersUsed: Object.values(searchData).filter(
+            value => value !== '' && value !== null && value !== 18 && value !== 30
           ).length
         }
       })
@@ -114,9 +114,10 @@ const trackRoommateSearch = async (searchData) => {
   }
 };
 
+
 const trackLocationSearch = async (location) => {
   try {
-    await fetch(`${API_BASE_URL}/api/analytics/track', {
+    await fetch('http://localhost:3001/api/analytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -139,7 +140,7 @@ const trackRoommatePreference = async (field, value) => {
   if (!value || value === '') return;
   
   try {
-    await fetch('`${API_BASE_URL}/api/analytics/track', {
+    await fetch('http://localhost:3001/api/analytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -165,7 +166,7 @@ const trackRoommatePreference = async (field, value) => {
 
 const trackRoommateView = async (roommate) => {
   try {
-    await fetch('${API_BASE_URL}/api/analytics/track', {
+    await fetch('http://localhost:3001/api/analytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -632,7 +633,7 @@ const RoommateDetailsModal = ({ open, onClose, roommate }) => {
           }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
               <Avatar
-                src={roommate.profilePicture ? `${API_BASE_URL}${roommate.profilePicture}` : undefined}
+                src={roommate.profilePicture ? `http://localhost:3001${roommate.profilePicture}` : undefined}
                 sx={{
                   width: 80,
                   height: 80,
@@ -904,7 +905,7 @@ export default function FindRoomie({ userEmail: propUserEmail, userProfile }) {
     }
     
     try {
-      await axios.delete(`${API_BASE_URL}/api/roommate-requests/${roommateId}`, {
+      await axios.delete(`http://localhost:3001/api/roommate-requests/${roommateId}`, {
         data: { userEmail }
       });
       
@@ -987,7 +988,7 @@ export default function FindRoomie({ userEmail: propUserEmail, userProfile }) {
     try {
       setLoading(true);
 
-      const response = await axios.get(`${API_BASE_URL}/api/roommate-requests');
+      const response = await axios.get('http://localhost:3001/api/roommate-requests');
 
       if (response.data.success) {
         setRoommates(response.data.data);
@@ -1495,8 +1496,6 @@ export default function FindRoomie({ userEmail: propUserEmail, userProfile }) {
                   <MenuItem value="Islam">🕌 Islam</MenuItem>
                   <MenuItem value="Christianity">⛪ Christian</MenuItem>
                   <MenuItem value="Buddhism">🏛️ Buddhism</MenuItem>
-                  <MenuItem value="Hinduism">🕉️ Hinduism</MenuItem>
-                  <MenuItem value="Other">🏛️ Other Religion</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -1967,7 +1966,7 @@ export default function FindRoomie({ userEmail: propUserEmail, userProfile }) {
                           <CardContent sx={{ p: 3 }}>
                             <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
                               <Avatar
-                                src={roommate.profilePicture ? `${API_BASE_URL}${roommate.profilePicture}` : undefined}
+                                src={roommate.profilePicture ? `http://localhost:3001${roommate.profilePicture}` : undefined}
                                 sx={{
                                   width: 60,
                                   height: 60,
@@ -2159,7 +2158,7 @@ export default function FindRoomie({ userEmail: propUserEmail, userProfile }) {
                       <CardContent sx={{ p: 3 }}>
                         <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
                           <Avatar
-                            src={roommate.profilePicture ? `${API_BASE_URL}${roommate.profilePicture}` : undefined}
+                            src={roommate.profilePicture ? `http://localhost:3001${roommate.profilePicture}` : undefined}
                             sx={{
                               width: 60,
                               height: 60,
